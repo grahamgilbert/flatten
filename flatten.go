@@ -59,6 +59,9 @@ const (
 
 	// Separate ala Rails, e.g. "a[b][c][1][d]"
 	RailsStyle
+
+	// Separate with a hashrocket, e.g. "a=>b=>1=>c=>d"
+	HashRocketStyle
 )
 
 // Nested input must be a map or slice
@@ -148,6 +151,8 @@ func enkey(top bool, prefix, subkey string, style SeparatorStyle) string {
 			key += "." + subkey
 		case RailsStyle:
 			key += "[" + subkey + "]"
+		case HashRocketStyle:
+			key += "=>" + subkey
 		}
 	}
 
